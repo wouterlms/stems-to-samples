@@ -1,0 +1,68 @@
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin scroll-bar($scrollbar-width: 4px) {
+  $scrollbar-thumb-background: #b4bccc;
+  $scrollbar-track-background: #fff;
+
+  &::-webkit-scrollbar {
+    width: $scrollbar-width;
+
+    &:horizontal {
+      height: $scrollbar-width;
+    }
+
+    &-thumb {
+      border-radius: $border-radius;
+      width: $scrollbar-width;
+      background: $scrollbar-thumb-background;
+    }
+
+    &-corner {
+      background: $scrollbar-track-background;
+    }
+
+    &-track {
+      background: transparent;
+
+      &-piece {
+        background: transparent;
+        width: $scrollbar-width;
+      }
+    }
+  }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

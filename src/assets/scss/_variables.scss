@@ -1,0 +1,64 @@
+// colors
+$primary-dark: #000;
+$primary-light: #fff;
+$primary-accent: #6191da;
+
+$error: #f56c6c;
+$error-background: #fef0f0;
+
+$warning: #e6a23c;
+$warning-background: #fdf6ec;
+
+$success: #43b581;
+$success-background: #f0f9eb;
+
+$info: #4447e0;
+$info-background: #dfe7fb;
+
+// text
+$font-xs: 0.8em;
+$font-sm: 0.9em;
+$font-lg: 1.1em;
+$font-xl: 1.2em;
+
+// text color
+$primary-text: rgb(48, 49, 51);
+$regular-text: rgb(96, 98, 102);
+$secondary-text: rgb(144, 147, 153);
+$placeholder-text: rgb(192, 196, 204);
+
+// shadow
+$box-shadow: 0 2px 12px 0 rgba(7, 6, 6, 0.1);
+
+// border
+$border-radius: 0.375em;
+$border-radius-sm: $border-radius / 2;
+$border-radius-lg: $border-radius * 2;
+$border-radius-xl: $border-radius * 4;
+
+$border-color: rgb(220, 223, 230);
+$border-color-light: rgb(228, 231, 237);
+$border-color-lighter: rgb(235, 238, 245);
+$border-color-extralight: rgb(242, 246, 252);
+$border-color--focus: $primary-accent;
+
+// input
+$input-color: #606266;
+$input-color--disabled: #c0c4cc;
+$input-padding: 0.5em;
+$input-transition: 0.3s;
+$input-background-color: $primary-light;
+$input-background-color--disabled: #f5f7fa;
+$input-placeholder-color: $placeholder-text;
+$input-placeholder-color--disabled: lighten($placeholder-text, 10);
+
+:export {
+  primaryDark: $primary-dark;
+  primaryLight: $primary-light;
+  primaryAccent: $primary-accent;
+
+  error: $error;
+  warning: $warning;
+  success: $success;
+  info: $info;
+}
