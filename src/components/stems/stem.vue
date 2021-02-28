@@ -68,7 +68,7 @@ export default class extends Mixins(cssVariablesMixin) {
 
     canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-    for (let i = 0, j = 0; i < this.stem.left.length; i += this.step) {
+    for (let i = 0, j = 0; i < this.stem.left.length; i += this.step, j++) {
       canvasCtx.beginPath()
 
       if (this.stem.left[i] !== 0) {
@@ -88,8 +88,6 @@ export default class extends Mixins(cssVariablesMixin) {
         canvasCtx.fillStyle = this.variables.primaryAccent
         canvasCtx.fill()
       }
-
-      j++
     }
   }
 

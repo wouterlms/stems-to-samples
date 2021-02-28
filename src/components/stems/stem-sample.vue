@@ -149,19 +149,17 @@ export default class extends Vue {
     for (
       let i = this.sample.offset + lengthStart, j = 0;
       i < this.sample.offset + this.sample.left.length + lengthEnd;
-      i++
+      i++, j++
     ) {
       channelBuffer1[j] = this.stem.left[i]
-      j++
     }
 
     for (
       let i = this.sample.offset + lengthStart, j = 0;
       i < this.sample.offset + this.sample.right.length + lengthEnd;
-      i++
+      i++, j++
     ) {
       channelBuffer2[j] = this.stem.right[i]
-      j++
     }
 
     return audioBuffer
