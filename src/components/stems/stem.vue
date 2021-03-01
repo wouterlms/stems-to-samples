@@ -36,7 +36,7 @@ export default class extends Mixins(cssVariablesMixin) {
   opacified: string[] = this.colors.map((color) => this.opacify(color, 0.3))
 
   // canvas settings
-  defaultDetail: number = 4000
+  defaultDetail: number = 5000
   barWidth: number = 1
   maxBarHeight: number = 30
   heightMultiplier: number = this.maxBarHeight / this.arrayMax(this.stem.left)
@@ -117,7 +117,6 @@ export default class extends Mixins(cssVariablesMixin) {
       const end = this.stem.samples[i].offset + this.stem.samples[i].left.length
 
       if (clickPos >= start && clickPos <= end) {
-        console.log('clicked sample', i)
         this.$root.$emit('play', this.toAudioBuffer(this.stem.samples[i]))
         break
       }
@@ -145,6 +144,13 @@ export default class extends Mixins(cssVariablesMixin) {
         this.stem.left[i] * this.heightMultiplier
       )
 
+      this.canvasCtx.rect(
+        (j / this.sizeReducer) * this.zoomDx - this.stemOffsetDx,
+        this.canvas.height / 2,
+        this.barWidth,
+        this.stem.left[i] * this.heightMultiplier * -1
+      )
+
       this.canvasCtx.fillStyle = this.variables.primaryAccent
       this.canvasCtx.fill()
     }
@@ -152,10 +158,12 @@ export default class extends Mixins(cssVariablesMixin) {
     for (let i = 0; i < this.stem.samples.length; i++) {
       const sample = this.stem.samples[i]
 
+      const largest = sample.left.length > sample.right.length ? sample.left.length : sample.right.length
+
       this.roundRect(
         (sample.offset / this.step / this.sizeReducer) * this.zoomDx - this.stemOffsetDx,
         10,
-        (sample.left.length / this.step / this.sizeReducer) * this.zoomDx,
+        (largest / this.step / this.sizeReducer) * this.zoomDx,
         130,
         5,
         this.opacified[sample.groupId] || this.opacify('#737373', 0.3),
@@ -217,11 +225,11 @@ export default class extends Mixins(cssVariablesMixin) {
     const channelBuffer1: Float32Array = audioBuffer.getChannelData(0)
     const channelBuffer2: Float32Array = audioBuffer.getChannelData(1)
 
-    for (let i = sample.offset, j = 0; i < sample.offset + sample.left.length; i++, j++) {
+    for (let i = sample.offset, j = 0; i < sample.offset + largest.length; i++, j++) {
       channelBuffer1[j] = this.stem.left[i]
     }
 
-    for (let i = sample.offset, j = 0; i < sample.offset + sample.right.length; i++, j++) {
+    for (let i = sample.offset, j = 0; i < sample.offset + largest.length; i++, j++) {
       channelBuffer2[j] = this.stem.right[i]
     }
 
